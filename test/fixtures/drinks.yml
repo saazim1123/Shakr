@@ -1,0 +1,65 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  strDrink: MyString
+  strCategory: MyString
+  strIBA: MyString
+  strGlass: MyString
+  strInstructions: MyString
+  strDrinkThumb: MyString
+  strIngredient1: MyString
+  strIngredient2: MyString
+  strIngredient3: MyString
+  strIngredient4: MyString
+  strIngredient5: MyString
+  strIngredient6: MyString
+  strIngredient7: MyString
+  strIngredient8: MyString
+  strIngredient9: MyString
+  strIngredient10: MyString
+  strIngredient11: MyString
+  strIngredient12: MyString
+  strMeasure1: MyString
+  strMeasure2: MyString
+  strMeasure3: MyString
+  strMeasure4: MyString
+  strMeasure5: MyString
+  strMeasure6: MyString
+  strMeasure7: MyString
+  strMeasure8: MyString
+  strMeasure9: MyString
+  strMeasure10: MyString
+  strMeasure11: MyString
+  strMeasure12: MyString
+
+two:
+  strDrink: MyString
+  strCategory: MyString
+  strIBA: MyString
+  strGlass: MyString
+  strInstructions: MyString
+  strDrinkThumb: MyString
+  strIngredient1: MyString
+  strIngredient2: MyString
+  strIngredient3: MyString
+  strIngredient4: MyString
+  strIngredient5: MyString
+  strIngredient6: MyString
+  strIngredient7: MyString
+  strIngredient8: MyString
+  strIngredient9: MyString
+  strIngredient10: MyString
+  strIngredient11: MyString
+  strIngredient12: MyString
+  strMeasure1: MyString
+  strMeasure2: MyString
+  strMeasure3: MyString
+  strMeasure4: MyString
+  strMeasure5: MyString
+  strMeasure6: MyString
+  strMeasure7: MyString
+  strMeasure8: MyString
+  strMeasure9: MyString
+  strMeasure10: MyString
+  strMeasure11: MyString
+  strMeasure12: MyString
