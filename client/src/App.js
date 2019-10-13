@@ -1,26 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import {BrowserRouter, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Login from './auth/Login'
+import Register from './auth/Register'
+import * as actions from './actions'
+
+import Header from './components/Header'
+import Landing from './components/Landing'
+
+class App extends Component {
+
+  componentDidMount () {
+    const token = localStorage.getItem('token')
+    if(token) {
+      this.props.getCurrentUser()
+    }
+  }
+
+  render() {
+    return (
+      <div>
+        <BrowserRouter>
+          <div className="app"> 
+          <Header />
+          <Route exact path="/" component={Landing}/>
+          <Route path="/login" component={Login}/>
+          <Route path="/register" component={Register}/>
+          </div>
+        </BrowserRouter>
+      </div>
+    )
+  }
+
+
 }
 
-export default App;
+const mapStateToProps = ({ auth }) => {
+  return { auth }
+}
+
+export default connect(mapStateToProps, actions)(App);
+
