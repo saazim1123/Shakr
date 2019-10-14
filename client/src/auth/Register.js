@@ -36,7 +36,7 @@ class Register extends Component {
               .then(resp => resp.json())
               .then(resp => {
                   localStorage.setItem('token', resp.id)
-                  window.location.href ='/drinks';
+                  window.location.href ='/my-bar';
                   this.props.dispatch({type: FETCH_USER, payload: resp})
               })
               .catch(err => {
@@ -111,7 +111,7 @@ class Register extends Component {
                             <Button color="green"> Submit </Button>
                         </Segment>
                     </Form>
-                    <Message> Already Have an Account? <Link to="/login">Login</Link></Message>
+                    <Message> Already Have an Account? <Link to="/signin">Login</Link></Message>
                 </Grid.Column>
             </Grid>
         )

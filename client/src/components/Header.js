@@ -18,7 +18,7 @@ class Header extends Component {
                     <Link
                         key="2"
                         className="item"
-                        to="/login"
+                        to="/signin"
                     >
                         Login
                     </Link>
@@ -35,7 +35,7 @@ class Header extends Component {
                     <Link 
                         key="2"
                         className="item"
-                        to="/login"
+                        to="/signin"
                     >
                         Login
                     </Link>
@@ -51,7 +51,7 @@ class Header extends Component {
                     </Link>,
                     <Link
                         key="3"
-                        to="/my_drinks"
+                        to="/mydrinks"
                         className="item"
                     >
                         My Drinks
@@ -75,11 +75,11 @@ class Header extends Component {
                 <Link 
                     to={'/'}
                     className="ui header item large"
-                    style={{ fontFamily: 'Faster One, cursive', color: "orange", fontSize: '55px', padding: '20px 35px'}}
+                    style={{ fontFamily: 'Faster One, cursive', color: "green", fontSize: '55px', padding: '20px 35px'}}
                 >  
-                    S
-                    <div style={{ color: 'teal', fontSize: '55px' }}>
-                        T
+                    Shak-r
+                    <div style={{ color: 'blue', fontSize: '55px' }}>
+                    Cocktail App
                     </div>
                 </Link>
                 <div className="right item" style={{fontSize: '18px'}}>

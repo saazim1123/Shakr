@@ -10,39 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_10_123045) do
+ActiveRecord::Schema.define(version: 2019_10_13_161152) do
 
-  create_table "drinks", force: :cascade do |t|
-    t.string "strDrink"
-    t.string "strCategory"
-    t.string "strIBA"
-    t.string "strGlass"
-    t.string "strInstructions"
-    t.string "strDrinkThumb"
-    t.string "strIngredient1"
-    t.string "strIngredient2"
-    t.string "strIngredient3"
-    t.string "strIngredient4"
-    t.string "strIngredient5"
-    t.string "strIngredient6"
-    t.string "strIngredient7"
-    t.string "strIngredient8"
-    t.string "strIngredient9"
-    t.string "strIngredient10"
-    t.string "strIngredient11"
-    t.string "strIngredient12"
-    t.string "strMeasure1"
-    t.string "strMeasure2"
-    t.string "strMeasure3"
-    t.string "strMeasure4"
-    t.string "strMeasure5"
-    t.string "strMeasure6"
-    t.string "strMeasure7"
-    t.string "strMeasure8"
-    t.string "strMeasure9"
-    t.string "strMeasure10"
-    t.string "strMeasure11"
-    t.string "strMeasure12"
+  create_table "ingredients", force: :cascade do |t|
+    t.string "quantity"
+    t.integer "recipe_id"
+    t.integer "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "recipes", force: :cascade do |t|
+    t.string "name"
+    t.string "category"
+    t.string "glass"
+    t.string "img_url"
+    t.text "instructions"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

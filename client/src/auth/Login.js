@@ -1,102 +1,66 @@
 import React, { Component } from 'react'
-import  { connect } from 'react-redux'
-import { FETCH_USER } from "../actions/types"
-import { headers, handleErrors } from "../actions/index"
-import URL_ROOT from '../actions/URL'
-import { Link } from 'react-router-dom'
-import { Grid, Form, Segment, Button, Header, Message, Icon } from 'semantic-ui-react'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import FormControl from '@material-ui/core/FormControl'
 
-class Login extends Component {
+import URL from '../actions/URL'
+
+
+class Login extends React.Component {
     state = {
-        username : "",
-        password : "",
-        errors: []
+        username: '',
+        password: ''
     }
 
-    handleChange = e => {
-        this.setState({
-            [e.target.name] : e.target.value
+    handleSubmit = () => {
+        const { username, password } =this.state
+        URL.signIn({ username, password })
+        .then(data => {
+            if (data.error) {
+                throw Error(data.error)
+            } else {
+                this.props.signIn(data)
+                this.props.history.push('/mybar')
+            }
+        })
+        .catch(error => {
+            alert(error)
         })
     }
 
-    handleSubmit = e => {
-        e.preventDefault();
+    handleChange = e => 
+        this.setState({ [e.target.name]: e.target.value})
+    
+    render () {
         const { username, password } = this.state
-        if(this.isFormValid(this.state)) {
-            this.setState({ errors: [] })
-            fetch(`${URL_ROOT}auth`, {
-                method: 'POST',
-                headers: headers,
-                body: JSON.stringify({ username, password })
-            }).then(handleErrors)
-              .then(resp => resp.json())
-              .then(resp => {
-                  localStorage.setItem('token', resp.id)
-                  window.location.href = '/';
-                  this.props.dispatch({type: FETCH_USER, payload: resp})
-              })
-              .catch(err => {
-                  this.setState({
-                      errors: this.state.errors.concat(err),
-                  })
-              })
-        }
-    }
-
-    isFormValid = ({ username, password }) => username && password;
-
-    displayErrors = errors => errors.map((error, i) => <p key={i}>{error.message}</p>)
-
-    handleInputError = (errors, inputName) => {
-        return errors.some(error =>
-            error.message.toLowerCase().includes(inputName)) ?
-            'error'
-            :
-            " "
-    }
-
-    render() {
-        const { username, password, errors } = this.state
-        return (
-            <Grid textAlign = "center" verticalAlign="top">
-                <Grid.Column style={{maxWidth: 450 }}>
-                    <Header as="h2" icon color="blue" textAlign="center">
-                        <Icon name="glass martini" color="brown" />
-                        Login to Shak-r
-                    </Header>
-                    {errors.length > 0 && (
-                        <Message error>
-                            {this.displayErrors(errors)}
-                        </Message>
-                    )}
-                    <Form onSubmit={this.handleSubmit} size="large">
-                        <Segment stacked>
-                            <Form.Input
-                                fluid name="user"
-                                icon="user"
-                                iconPosition="left"
-                                placeholder="Username"
-                                onChange={this.handleChange}
-                                value={username}
-                                className={this.handleInputError(errors, 'username' )}
-                                type="username" />
-                            <Form.Input
-                                fluid name="password"
-                                icon="lock"
-                                iconPosition="left"
-                                placeholder="Password"
-                                onChange={this.handleChange}
-                                value={password}
-                                className={this.handleInputError(errors, 'password')}
-                                type="password" />
-                            <Button> Submit </Button>
-                        </Segment>
-                    </Form>
-                    <Message>Don't have an account? <Link to="/register">Register</Link></Message>
-                </Grid.Column>
-            </Grid>
+        const { handleChange, handleSubmit } = this
+        
+        return(
+        <FormControl>
+            <TextField
+            id='usernameInput'
+            label='Username'
+            value={username}
+            onChange={handleChange}
+            margin='normal'
+            name='username'
+            />
+        <br />
+            <TextField
+            id='passwordInput'
+            label='Password'
+            value={password}
+            onChange={handleChange}
+            margin='normal'
+            name='password'
+            type='password'
+            />
+        <br />
+        <Button onClick={handleSubmit} variant='contained' color='primary'>
+          SUBMIT
+        </Button>
+        </FormControl>
         )
     }
 }
-
-export default connect()(Login);
+export default (Login);
